@@ -1,9 +1,22 @@
 var triangle = function(a, b, c) {
-  if ((a === b) && (b === c)){
-    return "equilateral";
+  if (a >= (b+c)||b >= (a+c)||c >= (b+a)){
+    $("#notatriangle").show();
+  } else if ((a === b) && (b === c)){
+    $("#equilateral").show();
   } else if (a === b||b === c||a === c){
-    return "isosceles";
+    $("#isosceles").show();
   } else {
-    return "scalene or not a triangle";
+    $("#scalene").show();
   }
   };
+
+
+$("form#triangle").submit(function(event){
+  var a = $("input#sideA").val();
+  var b = $("input#sideB").val();
+  var c = $("input#sideC").val();
+
+  triangle(a,b,c);
+
+  event.preventDefault();
+});
